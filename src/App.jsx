@@ -2,9 +2,10 @@ import Post from "./components/Post";
 
 function App() {
   return (
-    <>
-      <Post />
-    </>
+    <main>
+      <Post author="Andrii" body="React is awesome!" />
+      <Post author="Anna" body="Of course" />
+    </main>
   );
 }
 

@@ -1,11 +1,8 @@
-const names = ["Andrii", "Anna"];
-
-export default function Post() {
-  const chooseName = Math.random() > 0.5 ? names[0] : names[1];
+export default function Post(props) {
   return (
     <div>
-      <p>{chooseName}</p>
-      <p>React.js is awesome</p>
+      <p>{props.author}</p>
+      <p>{props.body}</p>
     </div>
   );
 }
