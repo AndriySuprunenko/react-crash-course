@@ -1,0 +1,22 @@
+.post {
+  width: 100%;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  list-style: none;
+}
+
+.author {
+  color: midnightblue;
+  font-size: 24px;
+}
+
+.text {
+  color: black;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  font-style: italic;
+}
