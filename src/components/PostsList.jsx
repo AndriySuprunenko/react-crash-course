@@ -39,6 +39,9 @@ export default function PostsList() {
       {modalContent}
       <ul className={styles.list}>
         <Post author={enteredAuthor} body={enteredBody} />
+        <Post author="Andrii" body="What's up?" />
+        <Post author="Anna" body="What's going?" />
+        <Post author="Arturito" body="How do you do?" />
       </ul>
     </>
   );
