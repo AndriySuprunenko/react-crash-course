@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import NewPost from "./NewPost";
 import Post from "./Post";
 import Modal from "./Modal";
