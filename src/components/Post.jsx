@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import classes from "./Post.module.css";
 
 function Post({ author, body }) {
@@ -8,5 +10,10 @@ function Post({ author, body }) {
     </li>
   );
 }
+
+Post.propTypes = {
+  author: PropTypes.string,
+  body: PropTypes.string,
+};
 
 export default Post;

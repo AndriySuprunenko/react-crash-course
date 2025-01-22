@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import classes from "./NewPost.module.css";
 
 function NewPost({ onBodyChange, onAuthorChange, onCancel }) {
@@ -20,5 +22,11 @@ function NewPost({ onBodyChange, onAuthorChange, onCancel }) {
     </form>
   );
 }
+
+NewPost.propTypes = {
+  onBodyChange: PropTypes.func,
+  onAuthorChange: PropTypes.func,
+  onCancel: PropTypes.func,
+};
 
 export default NewPost;

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import classes from "./Modal.module.css";
 
 function Modal({ children, onClose }) {
@@ -10,5 +12,10 @@ function Modal({ children, onClose }) {
     </>
   );
 }
+
+Modal.propTypes = {
+  children: PropTypes.element,
+  onClose: PropTypes.func,
+};
 
 export default Modal;

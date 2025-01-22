@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import NewPost from "./NewPost";
 import Post from "./Post";
@@ -43,3 +44,8 @@ export default function PostsList({ isPosting, onStopPosting }) {
     </>
   );
 }
+
+PostsList.propTypes = {
+  isPosting: PropTypes.bool,
+  onStopPosting: PropTypes.func,
+};
