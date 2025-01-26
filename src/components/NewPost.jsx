@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-import classes from "./NewPost.module.css";
+import classes from './NewPost.module.css';
 
-function NewPost({ onCancel }) {
-  const [enteredBody, setEnteredBody] = useState("");
-  const [enteredAuthor, setEnteredAuthor] = useState("");
+function NewPost({ onCancel, onAddPost }) {
+  const [enteredBody, setEnteredBody] = useState('');
+  const [enteredAuthor, setEnteredAuthor] = useState('');
 
   function bodyChangeHandler(event) {
     setEnteredBody(event.target.value);
@@ -19,25 +19,27 @@ function NewPost({ onCancel }) {
     const postData = {
       body: enteredBody,
       author: enteredAuthor,
+      id: Math.random().toString(),
     };
+    onAddPost(postData);
     onCancel();
   }
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
       <p>
-        <label htmlFor="body">Text</label>
-        <textarea id="body" required rows={3} onChange={bodyChangeHandler} />
+        <label htmlFor='body'>Text</label>
+        <textarea id='body' required rows={3} onChange={bodyChangeHandler} />
       </p>
       <p>
-        <label htmlFor="name">Your name</label>
-        <input type="text" id="name" required onChange={authorChangeHandler} />
+        <label htmlFor='name'>Your name</label>
+        <input type='text' id='name' required onChange={authorChangeHandler} />
       </p>
       <p className={classes.actions}>
-        <button type="button" onClick={onCancel}>
+        <button type='button' onClick={onCancel}>
           Cancel
         </button>
-        <button type="submit">Submit</button>
+        <button type='submit'>Submit</button>
       </p>
     </form>
   );
@@ -45,6 +47,7 @@ function NewPost({ onCancel }) {
 
 NewPost.propTypes = {
   onCancel: PropTypes.func,
+  onAddPost: PropTypes.func,
 };
 
 export default NewPost;

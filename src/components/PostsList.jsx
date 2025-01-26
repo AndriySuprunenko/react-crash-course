@@ -1,18 +1,23 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import NewPost from "./NewPost";
-import Post from "./Post";
-import Modal from "./Modal";
+import NewPost from './NewPost';
+import Post from './Post';
+import Modal from './Modal';
 
-import styles from "./PostList.module.css";
+import styles from './PostList.module.css';
 
-export default function PostsList({ isPosting, onStopPosting }) {
+export default function PostsList({
+  isPosting,
+  onStopPosting,
+  posts,
+  onAddPost,
+}) {
   let modalContent;
 
   if (isPosting) {
     modalContent = (
       <Modal onClose={onStopPosting}>
-        <NewPost onCancel={onStopPosting} />
+        <NewPost onCancel={onStopPosting} onAddPost={onAddPost} />
       </Modal>
     );
   }
@@ -21,9 +26,9 @@ export default function PostsList({ isPosting, onStopPosting }) {
     <>
       {modalContent}
       <ul className={styles.list}>
-        <Post author="Andrii" body="What's up?" />
-        <Post author="Anna" body="What's going?" />
-        <Post author="Arturito" body="How do you do?" />
+        {posts.map((post) => (
+          <Post key={post.id} author={post.author} body={post.body} />
+        ))}
       </ul>
     </>
   );
@@ -32,4 +37,6 @@ export default function PostsList({ isPosting, onStopPosting }) {
 PostsList.propTypes = {
   isPosting: PropTypes.bool,
   onStopPosting: PropTypes.func,
+  posts: PropTypes.array,
+  onAddPost: PropTypes.func,
 };

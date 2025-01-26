@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import classes from "./Post.module.css";
+import classes from './Post.module.css';
 
 function Post({ author, body }) {
   return (
