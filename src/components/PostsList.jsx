@@ -1,25 +1,26 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { useState } from "react";
 
-import NewPost from './NewPost';
-import Post from './Post';
-import Modal from './Modal';
+import NewPost from "./NewPost";
+import Post from "./Post";
+import Modal from "./Modal";
 
-import styles from './PostList.module.css';
+import styles from "./PostList.module.css";
 
-export default function PostsList({
-  isPosting,
-  onStopPosting,
-  posts,
-  onAddPost,
-}) {
+export default function PostsList({ isPosting, onStopPosting }) {
+  const [posts, setPosts] = useState([]);
   let modalContent;
 
   if (isPosting) {
     modalContent = (
       <Modal onClose={onStopPosting}>
-        <NewPost onCancel={onStopPosting} onAddPost={onAddPost} />
+        <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
       </Modal>
     );
+  }
+
+  function addPostHandler(postData) {
+    setPosts((existingPosts) => [postData, ...existingPosts]);
   }
 
   return (
