@@ -26,11 +26,19 @@ export default function PostsList({ isPosting, onStopPosting }) {
   return (
     <>
       {modalContent}
-      <ul className={styles.list}>
-        {posts.map((post) => (
-          <Post key={post.id} author={post.author} body={post.body} />
-        ))}
-      </ul>
+      {posts.length > 0 && (
+        <ul className={styles.list}>
+          {posts.map((post) => (
+            <Post key={post.id} author={post.author} body={post.body} />
+          ))}
+        </ul>
+      )}
+      {posts.length === 0 && (
+        <div style={{ textAlign: "center", color: "while" }}>
+          <h2>No posts yet.</h2>
+          <p>Would you like to add one?</p>
+        </div>
+      )}
     </>
   );
 }
