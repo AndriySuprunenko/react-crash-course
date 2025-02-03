@@ -20,7 +20,15 @@ export default function PostsList({ isPosting, onStopPosting }) {
   }
 
   function addPostHandler(postData) {
-    setPosts((existingPosts) => [postData, ...existingPosts]);
+    fetch("http://localhost:8080/posts", {
+      method: "POST",
+      body: JSON.stringify(postData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      setPosts((existingPosts) => [postData, ...existingPosts]);
+    });
   }
 
   return (
