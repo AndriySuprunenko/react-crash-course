@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import NewPost from "./NewPost";
 import Post from "./Post";
@@ -9,8 +9,10 @@ import styles from "./PostList.module.css";
 
 export default function PostsList({ isPosting, onStopPosting }) {
   const [posts, setPosts] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   let modalContent;
 
+  // show modal
   if (isPosting) {
     modalContent = (
       <Modal onClose={onStopPosting}>
@@ -19,6 +21,25 @@ export default function PostsList({ isPosting, onStopPosting }) {
     );
   }
 
+  // get posts
+  useEffect(() => {
+    async function fetchPosts() {
+      setIsFetching(true);
+      const response = await fetch("http://localhost:8080/posts");
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Could not fetch posts.");
+      }
+
+      setPosts(data.posts);
+      setIsFetching(false);
+    }
+
+    fetchPosts();
+  }, []);
+
+  // add post
   function addPostHandler(postData) {
     fetch("http://localhost:8080/posts", {
       method: "POST",
@@ -34,19 +55,20 @@ export default function PostsList({ isPosting, onStopPosting }) {
   return (
     <>
       {modalContent}
-      {posts.length > 0 && (
+      {!isFetching && posts.length > 0 && (
         <ul className={styles.list}>
           {posts.map((post) => (
             <Post key={post.id} author={post.author} body={post.body} />
           ))}
         </ul>
       )}
-      {posts.length === 0 && (
+      {!isFetching && posts.length === 0 && (
         <div style={{ textAlign: "center", color: "while" }}>
           <h2>No posts yet.</h2>
           <p>Would you like to add one?</p>
         </div>
       )}
+      {isFetching && <p>Loading posts...</p>}
     </>
   );
 }
