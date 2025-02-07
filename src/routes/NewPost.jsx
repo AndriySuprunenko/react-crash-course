@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import Modal from "../components/Modal";
 
 import classes from "./NewPost.module.css";
 
-function NewPost({ onCancel, onAddPost }) {
+function NewPost({ onAddPost }) {
   const [enteredBody, setEnteredBody] = useState("");
   const [enteredAuthor, setEnteredAuthor] = useState("");
 
@@ -24,7 +25,6 @@ function NewPost({ onCancel, onAddPost }) {
       id: Math.random().toString(),
     };
     onAddPost(postData);
-    onCancel();
   }
 
   return (
@@ -44,9 +44,9 @@ function NewPost({ onCancel, onAddPost }) {
           />
         </p>
         <p className={classes.actions}>
-          <button type="button" onClick={onCancel}>
+          <Link type="button" to="/">
             Cancel
-          </button>
+          </Link>
           <button type="submit">Submit</button>
         </p>
       </form>
@@ -55,7 +55,6 @@ function NewPost({ onCancel, onAddPost }) {
 }
 
 NewPost.propTypes = {
-  onCancel: PropTypes.func,
   onAddPost: PropTypes.func,
 };
 
