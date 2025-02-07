@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
 import Post from "./Post";
@@ -61,8 +60,3 @@ export default function PostsList() {
     </>
   );
 }
-
-PostsList.propTypes = {
-  posts: PropTypes.array,
-  onAddPost: PropTypes.func,
-};
