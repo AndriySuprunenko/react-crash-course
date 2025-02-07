@@ -8,19 +8,6 @@ export default function PostsList() {
   const posts = useLoaderData();
   let modalContent;
 
-  // add post
-  function addPostHandler(postData) {
-    fetch("http://localhost:8080/posts", {
-      method: "POST",
-      body: JSON.stringify(postData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => {
-      setPosts((existingPosts) => [postData, ...existingPosts]);
-    });
-  }
-
   return (
     <>
       {modalContent}
