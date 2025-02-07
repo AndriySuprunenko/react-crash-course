@@ -1,25 +1,14 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 
-import NewPost from "../routes/NewPost";
 import Post from "./Post";
-import Modal from "./Modal";
 
 import styles from "./PostList.module.css";
 
-export default function PostsList({ isPosting, onStopPosting }) {
+export default function PostsList() {
   const [posts, setPosts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   let modalContent;
-
-  // show modal
-  if (isPosting) {
-    modalContent = (
-      <Modal onClose={onStopPosting}>
-        <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
-      </Modal>
-    );
-  }
 
   // get posts
   useEffect(() => {
@@ -74,8 +63,6 @@ export default function PostsList({ isPosting, onStopPosting }) {
 }
 
 PostsList.propTypes = {
-  isPosting: PropTypes.bool,
-  onStopPosting: PropTypes.func,
   posts: PropTypes.array,
   onAddPost: PropTypes.func,
 };
